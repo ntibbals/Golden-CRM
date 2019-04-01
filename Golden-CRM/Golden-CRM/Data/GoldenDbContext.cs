@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Golden_CRM.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,8 @@ namespace Golden_CRM.Data
         {
 
         }
+
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Note> Notes { get; set; }
     }
 }
