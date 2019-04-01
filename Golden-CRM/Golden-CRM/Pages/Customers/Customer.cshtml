@@ -1,0 +1,33 @@
+﻿@page "{id?}"
+@model Golden_CRM.Pages.Leads.CustomerModel
+@{
+    Layout = "_Layout";
+}
+
+<h1> Individual Customer Page</h1>
+
+<div>
+    <div id="form-contain">
+        <form method="post" enctype="multipart/form-data" id="form">
+            <div>
+                <label asp-for="Customer.FirstName"></label>
+                <input asp-for="Customer.FirstName" id="input" />
+            </div>
+            <div>
+                <label asp-for="Customer.LastName"></label>
+                <input asp-for="Customer.LastName" id="input" />
+            </div>
+            <div>
+                <label asp-for="Customer.Email"></label>
+                <input asp-for="Customer.Email" id="input" />
+            </div>
+            <div>
+                <label asp-for="Customer.PhoneNumber"></label>
+                <input asp-for="Customer.PhoneNumber" id="input" />
+            </div>
+            <div id="button-contain">
+                <button type="submit" asp-page-handler="Edit" id="button">Edit</button>
+            </div>
+        </form>
+    </div>
+</div>
