@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Golden_CRM.Models.Interfaces
 {
-    interface ICustomer
+    public interface ICustomer
     {
         Task<Customer> FindCustomer(int id);
         Task<List<Customer>> GetCustomers();

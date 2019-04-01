@@ -46,11 +46,11 @@ namespace Golden_CRM.Models.Services
 
         public async Task SaveAsync(Customer customer)
         {
-            Customer cust = await _context.Customers.FirstOrDefaultAsync(c = customer.ID == customer.ID);
+            Customer cust = await _context.Customers.FirstOrDefaultAsync(c => customer.ID == customer.ID);
 
             if(cust == null)
             {
-                _context.Customers.Add(cust);
+                _context.Customers.Add(customer);
             }
 
             else
