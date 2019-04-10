@@ -4,14 +4,16 @@ using Golden_CRM.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Golden_CRM.Migrations
 {
     [DbContext(typeof(GoldenDbContext))]
-    partial class GoldenDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190410183113_mvc")]
+    partial class mvc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,16 +38,6 @@ namespace Golden_CRM.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Customers");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Email = "jd@doe.com",
-                            FirstName = "John",
-                            LastName = "Doe",
-                            PhoneNumber = "555-555-5555"
-                        });
                 });
 
             modelBuilder.Entity("Golden_CRM.Models.Note", b =>

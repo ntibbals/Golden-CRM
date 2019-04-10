@@ -11,6 +11,7 @@ namespace Golden_CRM.Models
     {
         public int ID { get; set; }
         public int CustomerID { get; set; }
+        public string UserID { get; set; }
         [Column(TypeName = "varchar(max)")]
         [MaxLength]
         public string Comment { get; set; }

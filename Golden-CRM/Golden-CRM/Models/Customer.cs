@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Golden_CRM.Models.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,5 +15,8 @@ namespace Golden_CRM.Models
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
+        //Navigation Properties
+        public ICollection<Note> Notes { get; set; }
+    
     }
 }
