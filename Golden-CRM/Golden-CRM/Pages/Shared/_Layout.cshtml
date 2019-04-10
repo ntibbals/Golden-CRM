@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Golden CRM</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/reset.css" rel="stylesheet" />
+    <link href="~/base.css" rel="stylesheet" />
+    <link href="~/header.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div id="headcontain">
+            <div id="head-but-contain">
+                <a asp-page="/Customers/Customer" asp-route-id="null" id="button-new"><i class="far fa-plus-square"></i></a>
+
+                <a asp-page="/Index" asp-route-id="null" id="button-new"><i class="fas fa-home"></i></a>
+            </div>
+            <nav id="hamburger" role="navigation">
+                <div id="navToggle">
+                    <input type="checkbox" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <ul id="nav">
+                        <li><a id="links" href='/'> Home </a></li>
+                        <li><a id="links" href='/Pages/Customers/Customer'> New Customer </a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="indexcontain">
+                <h1 id="index-title"> Golden-CRM</h1>
+            </div>
+        </div>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        <div>
+            <p>© 2019 Copyright</p>
+        </div>
+    </footer>
+</body>
+</html>

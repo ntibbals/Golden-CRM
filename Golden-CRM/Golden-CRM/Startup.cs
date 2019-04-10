@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Golden_CRM.Data;
+using Golden_CRM.Models.Interfaces;
+using Golden_CRM.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +32,7 @@ namespace Golden_CRM
             services.AddMvc();
             services.AddDbContext<GoldenDbContext>(options =>
             options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddScoped<ICustomer, CustomerManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
