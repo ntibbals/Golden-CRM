@@ -38,11 +38,11 @@ namespace Golden_CRM.Pages.Components.Notes
                 Note note = new Note();
                 await _note.SaveAsync(note);
             }
-            else
-            {
-                await _note.SaveChangesAsync();
+            //else
+            //{
+            //    await _note.SaveChangesAsync();
 
-            }
+            //}
 
             return RedirectToPage("/Customers/Customer", new { id = ID });
         }
