@@ -15,6 +15,7 @@ namespace Golden_CRM.Pages.Leads
 
         [BindProperty]
         public Customer Customer { get; set; }
+
         [FromRoute]
         public int? ID { get; set; }
 
