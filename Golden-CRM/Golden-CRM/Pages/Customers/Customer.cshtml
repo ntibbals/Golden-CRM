@@ -29,5 +29,9 @@
                 <button type="submit" value"Save" id="button">Save</button>
             </div>
         </form>
+        <div id="component">
+            @await Component.InvokeAsync("Notes", Model.ID)
+
+        </div>
     </div>
 </div>
