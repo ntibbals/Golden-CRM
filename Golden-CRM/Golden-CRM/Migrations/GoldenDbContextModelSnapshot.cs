@@ -68,6 +68,22 @@ namespace Golden_CRM.Migrations
                     b.HasIndex("CustomerID");
 
                     b.ToTable("Notes");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Comment = "This is comment one for John Doe",
+                            CustomerID = 1,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Comment = "This is comment two for John Doe",
+                            CustomerID = 1,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Golden_CRM.Models.Note", b =>

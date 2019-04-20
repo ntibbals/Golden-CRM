@@ -33,6 +33,7 @@ namespace Golden_CRM
             services.AddDbContext<GoldenDbContext>(options =>
             options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddScoped<ICustomer, CustomerManager>();
+            services.AddScoped<INote, NoteManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

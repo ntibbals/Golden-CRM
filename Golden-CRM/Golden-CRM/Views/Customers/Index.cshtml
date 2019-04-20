@@ -2,20 +2,44 @@
 @model IEnumerable<Golden_CRM.Models.Customer>
 
 @{
-    ViewData["Title"] = "Products";
+    ViewData["Title"] = "Customers";
     Layout = "_Layout";
 }
 
-<div class="cust-index-contain">
-    @foreach (var item in Model)
-    {
-    <div class="ind-cust-contain">
-        <p>@item.FirstName</p>
-        <p>@item.LastName</p>
-        <p>@item.Email</p>
-        <p>@item.PhoneNumber</p>
-        <a asp-page="/Customers/Customer" asp-route-id="@item.ID" id="button-new">Details</a>
-    </div>
-    }
+    <div class="cust-index-contain">
+        @foreach (var item in Model)
+        {
+            <div class="ind-cust-contain">
+                <p>@item.FirstName</p>
+                <p>@item.LastName</p>
+                <p>@item.Email</p>
+                <p>@item.PhoneNumber</p>
+                <a asp-page="/Customers/Customer" asp-route-id="@item.ID" id="button-new">Details</a>
+            </div>
+            <div class="current-notes">
+                <div id="component">
+                    @await Component.InvokeAsync("Notes", @item.ID)
 
-</div>
+                </div>
+                <h1>Current Notes</h1>
+
+                @if (item.Notes != null)
+                {
+                    @foreach (var note in item.Notes)
+                    {
+                        <div class="note-item">
+                            <h3>@note.Comment</h3>
+                        </div>
+                    }
+                }
+                else
+                {
+
+                    <h3>No comments</h3>
+                }
+
+            </div>
+        }
+
+
+    </div>

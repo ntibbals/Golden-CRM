@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Golden_CRM.Migrations
 {
     [DbContext(typeof(GoldenDbContext))]
-    [Migration("20190401221253_v2")]
-    partial class v2
+    [Migration("20190420231229_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,16 @@ namespace Golden_CRM.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Email = "jd@doe.com",
+                            FirstName = "John",
+                            LastName = "Doe",
+                            PhoneNumber = "555-555-5555"
+                        });
                 });
 
             modelBuilder.Entity("Golden_CRM.Models.Note", b =>
@@ -53,9 +63,37 @@ namespace Golden_CRM.Migrations
 
                     b.Property<DateTime>("Date");
 
+                    b.Property<string>("UserID");
+
                     b.HasKey("ID");
 
+                    b.HasIndex("CustomerID");
+
                     b.ToTable("Notes");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Comment = "This is comment one for John Doe",
+                            CustomerID = 1,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Comment = "This is comment two for John Doe",
+                            CustomerID = 1,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("Golden_CRM.Models.Note", b =>
+                {
+                    b.HasOne("Golden_CRM.Models.Customer")
+                        .WithMany("Notes")
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
