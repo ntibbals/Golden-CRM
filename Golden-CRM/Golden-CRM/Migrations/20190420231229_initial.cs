@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Golden_CRM.Migrations
 {
-    public partial class initial2 : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,8 @@ namespace Golden_CRM.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CustomerID = table.Column<int>(nullable: false),
-                    Comment = table.Column<string>(nullable: true),
+                    UserID = table.Column<string>(nullable: true),
+                    Comment = table.Column<string>(type: "varchar(max)", nullable: true),
                     Date = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -44,6 +45,21 @@ namespace Golden_CRM.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "ID", "Email", "FirstName", "LastName", "PhoneNumber" },
+                values: new object[] { 1, "jd@doe.com", "John", "Doe", "555-555-5555" });
+
+            migrationBuilder.InsertData(
+                table: "Notes",
+                columns: new[] { "ID", "Comment", "CustomerID", "Date", "UserID" },
+                values: new object[] { 1, "This is comment one for John Doe", 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null });
+
+            migrationBuilder.InsertData(
+                table: "Notes",
+                columns: new[] { "ID", "Comment", "CustomerID", "Date", "UserID" },
+                values: new object[] { 2, "This is comment two for John Doe", 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Notes_CustomerID",

@@ -29,5 +29,29 @@
                 <button type="submit" value"Save" id="button">Save</button>
             </div>
         </form>
+
+        @*<div id="component">
+            @await Component.InvokeAsync("Notes", Model.ID)
+
+        </div>*@
+        <div class="current-notes">
+            <h1>Current Notes</h1>
+
+            @if (Model.Customer.Notes != null)
+            {
+                @foreach (var note in Model.Customer.Notes)
+                {
+                    <div class="note-item">
+                        <h3>@note.Comment</h3>
+                    </div>
+                }
+            }
+            else
+            {
+
+                <h3>No comments</h3>
+            }
+
+        </div>
     </div>
 </div>

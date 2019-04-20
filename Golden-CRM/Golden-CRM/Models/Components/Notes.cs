@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Golden_CRM.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +10,33 @@ namespace Golden_CRM.Models.Components
 {
     public class Notes : ViewComponent
     {
+        private readonly GoldenDbContext _context;
 
-        public async Task<IViewComponentResult> InokeAsync()
+        public Notes(GoldenDbContext context)
         {
-            return View();
+            _context = context;
         }
+        //public async Task<IViewComponentResult> InvokeAsync(int id)
+        //{
+        //    Note note = new Note();
+
+        //    if (note != null)
+        //    {
+        //        return View(note);
+        //    }
+        //    return View(null);
+        //}
+
+        public async Task<IViewComponentResult> InvokeAsync(int id)
+        {
+            var customer = _context.Notes.Where(n => n.CustomerID == id).ToList();
+
+            if (customer != null)
+            {
+                return View(customer);
+            }
+            return View(null);
+        }
+
     }
 }
