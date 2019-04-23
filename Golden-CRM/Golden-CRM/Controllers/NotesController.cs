@@ -40,8 +40,9 @@ namespace Golden_CRM.Controllers
             {
                 if(ModelState.IsValid)
                 {
+                    note.ID = 0;
                     await _context.SaveAsync(note);
-                    return RedirectToAction(nameof(Index));
+                    return LocalRedirect($"~/Customers/Customer/{note.CustomerID}");
                 }
                 return View(note);
             }

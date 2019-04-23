@@ -1,0 +1,19 @@
+﻿
+@model Golden_CRM.Models.Note
+<h1>Add a note</h1>
+<div>
+    <div id="form-contain">
+        <form asp-controller="Notes" asp-action="Create">
+            <input type="hidden" asp-for="@Model.CustomerID" id="input" />
+            <div>
+                <label asp-for="@Model.Comment"></label>
+                <input asp-for="@Model.Comment" id="input" />
+            </div>
+
+            <div id="button-contain">
+                <button type="submit" value"Save" id="button">Save</button>
+            </div>
+        </form>
+
+    </div>
+</div>
