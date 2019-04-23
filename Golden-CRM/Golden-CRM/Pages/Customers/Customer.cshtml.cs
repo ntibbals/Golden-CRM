@@ -34,8 +34,6 @@ namespace Golden_CRM.Pages.Leads
             customer.FirstName = Customer.FirstName;
             customer.LastName = Customer.LastName;
             customer.Email = Customer.Email;
-            customer.PhoneNumber = Customer.PhoneNumber;
-            customer.Notes = Customer.Notes;
 
             await _customer.SaveAsync(customer);
 

@@ -29,14 +29,25 @@ namespace Golden_CRM.Models.Components
 
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
-            var customer = _context.Notes.Where(n => n.CustomerID == id).ToList();
+            var note = _context.Notes.Where(n => n.CustomerID == id).ToList();
 
-            if (customer != null)
+            if (note != null)
             {
-                return View(customer);
+                return View(note);
             }
             return View(null);
         }
+
+        //public async Task<IViewComponentResult> InvokeAsync(int id)
+        //{
+        //    var customer = _context.Customers.Where(n => n.ID == id);
+
+        //    if (customer != null)
+        //    {
+        //        return View(customer);
+        //    }
+        //    return View(null);
+        //}
 
     }
 }
