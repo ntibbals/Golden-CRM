@@ -95,5 +95,6 @@ namespace Golden_CRM.Migrations
                 });
 #pragma warning restore 612, 618
         }
+
     }
 }

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Golden_CRM.Data;
+using Golden_CRM.Models;
 using Golden_CRM.Models.Interfaces;
 using Golden_CRM.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,7 @@ namespace Golden_CRM
 {
     public class Startup
     {
+
         public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
@@ -30,8 +33,18 @@ namespace Golden_CRM
 
 
             services.AddMvc();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<UserDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ProfessionalsOnly", policy => policy.Requirements.Add(new ProfessionalRequirement("true")));
+                options.AddPolicy("AdminOnly", policy => policy.RequireRole(ApplicationRoles.Admin));
+            });
             services.AddDbContext<GoldenDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            options.EnableSensitiveDataLogging().UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddScoped<ICustomer, CustomerManager>();
             services.AddScoped<INote, NoteManager>();
         }

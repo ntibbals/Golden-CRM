@@ -55,9 +55,9 @@ namespace Golden_CRM.Controllers
         }
         public async Task<IActionResult> Edit(int id)
         {
-            var customer = await _context.FindNote(id);
+            var note = await _context.FindNote(id);
 
-            return View(customer);
+            return View(note);
         }
 
         [HttpPost]
@@ -73,14 +73,16 @@ namespace Golden_CRM.Controllers
             {
                 try
                 {
-                    await _context.SaveAsync(note);
+                    await _context.UpdateNote(note);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     throw;
                 }
 
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return LocalRedirect($"~/Customers/Customer/{note.CustomerID}");
+
             }
 
             return View(note);
@@ -102,8 +104,9 @@ namespace Golden_CRM.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            Note note = await _context.FindNote(id);
             await _context.DeleteAsync(id);
-            return RedirectToAction(nameof(Index));
+            return LocalRedirect($"~/Customers/Customer/{note.CustomerID}");
         }
 
     }

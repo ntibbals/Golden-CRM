@@ -17,6 +17,7 @@
                 <div class="note-item">
                     <h3>@note.Comment</h3>
                 </div>
+                <a asp-controller="Notes" asp-action="Edit" asp-route-id="@note.ID" >Edit</a>
             }
         }
         else
