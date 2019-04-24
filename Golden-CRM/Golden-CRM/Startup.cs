@@ -16,6 +16,7 @@ namespace Golden_CRM
 {
     public class Startup
     {
+
         public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
@@ -31,7 +32,7 @@ namespace Golden_CRM
 
             services.AddMvc();
             services.AddDbContext<GoldenDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            options.EnableSensitiveDataLogging().UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddScoped<ICustomer, CustomerManager>();
             services.AddScoped<INote, NoteManager>();
         }

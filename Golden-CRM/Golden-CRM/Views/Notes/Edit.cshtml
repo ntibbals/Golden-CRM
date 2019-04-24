@@ -1,0 +1,29 @@
+﻿@using Golden_CRM.Models
+@model Golden_CRM.Models.Note
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+<h1>Edit note</h1>
+<div>
+    <div id="form-contain">
+        <form method="post" enctype="multipart/form-data" id="form">
+            <input type="hidden" asp-for="@Model.ID" id="input" />
+            <input type="hidden" asp-for="@Model.CustomerID" id="input" />
+            <div>
+                <label asp-for="@Model.Comment"></label>
+                <input asp-for="@Model.Comment" id="input" />
+            </div>
+
+            <div id="button-contain">
+                <button type="submit" value"Save" id="button">Edit</button>
+            </div>
+        </form>
+        <form asp-controller="Notes" asp-action="Delete">
+            <input type="hidden" asp-for="@Model.ID" id="input" />
+            <input type="hidden" asp-for="@Model.CustomerID" id="input" />
+            <button id="button" type="submit">Remove from Cart</button>
+        </form>
+    </div>
+</div>

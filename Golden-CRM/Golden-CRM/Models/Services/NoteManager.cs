@@ -51,16 +51,35 @@ namespace Golden_CRM.Models.Services
 
         public async Task SaveAsync(Note note)
         {
-            Note oldNote = await _context.Notes.FirstOrDefaultAsync(n => n.ID == note.ID);
 
-            if(oldNote == null)
+            if(await _context.Notes.FirstOrDefaultAsync(n => n.ID == note.ID) == null)
             {
                 _context.Notes.Add(note);
             }
 
             else
             {
-                oldNote = note;
+                _context.Notes.Update(note);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateNote(Note note)
+        {
+            Note oldNote = await _context.Notes.FirstOrDefaultAsync(n => n.ID == note.ID);
+
+            if ( note == null)
+            {
+                _context.Notes.Add(note);
+            }
+
+            else
+            {
+                oldNote.Comment = note.Comment;
+                oldNote.Date = note.Date;
+                oldNote.UserID = note.UserID;
+
                 _context.Notes.Update(oldNote);
             }
 
