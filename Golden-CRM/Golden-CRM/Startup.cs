@@ -40,9 +40,12 @@ namespace Golden_CRM
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("ProfessionalsOnly", policy => policy.Requirements.Add(new ProfessionalRequirement("true")));
                 options.AddPolicy("AdminOnly", policy => policy.RequireRole(ApplicationRoles.Admin));
             });
+
+            services.AddDbContext<UserDbContext>(options =>
+                options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
+
             services.AddDbContext<GoldenDbContext>(options =>
             options.EnableSensitiveDataLogging().UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddScoped<ICustomer, CustomerManager>();
@@ -52,6 +55,8 @@ namespace Golden_CRM
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
