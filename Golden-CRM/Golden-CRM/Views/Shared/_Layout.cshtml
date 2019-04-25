@@ -11,28 +11,8 @@
 </head>
 <body>
     <header>
-        <div id="headcontain">
-            <div id="head-but-contain">
-                <a asp-page="/Customers/Customer" asp-route-id="null" id="button-new"><i class="far fa-plus-square"></i></a>
-
-                <a asp-page="/Index" asp-route-id="null" id="button-new"><i class="fas fa-home"></i></a>
-                <a asp-controller="Customers" asp-action="Index">Customer Home Page</a>
-            </div>
-            <nav id="hamburger" role="navigation">
-                <div id="navToggle">
-                    <input type="checkbox" />
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <ul id="nav">
-                        <li><a id="links" href='/'> Home </a></li>
-                        <li><a id="links" href='/Pages/Customers/Customer'> New Customer </a></li>
-                    </ul>
-                </div>
-            </nav>
-            <div id="indexcontain">
-                <h1 id="index-title"> Golden-CRM</h1>
-            </div>
+        <div class="header-outer">
+            @{<partial name="_NavPartial" />}
         </div>
     </header>
     <main>

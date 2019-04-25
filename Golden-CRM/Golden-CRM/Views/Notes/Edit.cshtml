@@ -1,15 +1,21 @@
 ﻿@using Golden_CRM.Models
+@using Microsoft.AspNetCore.Identity
+@using Golden_CRM.Models
+@inject UserManager<ApplicationUser> userManager
 @model Golden_CRM.Models.Note
 @{
     ViewData["Title"] = "Edit";
     Layout = "_Layout";
 }
-
+@{
+    var email = @User.Claims.First(c => c.Type == "Email").Value;
+}
 <h1>Edit note</h1>
 <div>
     <div id="form-contain">
         <form method="post" enctype="multipart/form-data" id="form">
             <input type="hidden" asp-for="@Model.ID" id="input" />
+            <input type="hidden" asp-for="@Model.UserID" value="@email" id="input" />
             <input type="hidden" asp-for="@Model.CustomerID" id="input" />
             <div>
                 <label asp-for="@Model.Comment"></label>

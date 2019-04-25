@@ -34,7 +34,7 @@ namespace Golden_CRM.Controllers
                 {
                     FirstName = rvm.FirstName,
                     LastName = rvm.LastName,
-                    UserName = rvm.UserName,
+                    UserName = rvm.Email,
                     Email = rvm.Email
                 };
 
@@ -42,7 +42,7 @@ namespace Golden_CRM.Controllers
 
                 if (result.Succeeded)
                 {
-                    Claim name = new Claim("name", user.FirstName);
+                    Claim name = new Claim("Name", user.FirstName);
                     Claim emailClaim = new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.Email);
                     Claim userEmailClaim = new Claim("Email", user.Email);
 

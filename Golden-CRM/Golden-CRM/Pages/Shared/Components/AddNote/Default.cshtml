@@ -1,10 +1,21 @@
 ﻿
+
+@using Microsoft.AspNetCore.Identity
+@using Golden_CRM.Models
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
 @model Golden_CRM.Models.Note
+
+
+@{
+    var email = @User.Claims.First(c => c.Type == "Email").Value;
+}
 <h1>Add a note</h1>
 <div>
     <div id="form-contain">
         <form asp-controller="Notes" asp-action="Create">
             <input type="hidden" asp-for="@Model.CustomerID" id="input" />
+            <input type="hidden" asp-for="@Model.UserID" value="@email" id="input" />
             <div>
                 <label asp-for="@Model.Comment"></label>
                 <input asp-for="@Model.Comment" id="input" />

@@ -17,10 +17,6 @@ namespace Golden_CRM.Models.ViewModels
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "User Name")]
-        public string UserName { get; set; }
-
-        [Required]
         [EmailAddress]
         public string Email { get; set; }
 
