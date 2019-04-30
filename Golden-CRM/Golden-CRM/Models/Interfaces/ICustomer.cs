@@ -11,5 +11,6 @@ namespace Golden_CRM.Models.Interfaces
         Task<List<Customer>> GetCustomers();
         Task SaveAsync(Customer customer);
         Task DeleteAsync(int id);
+        Task<List<Customer>> RecentCustomers(string userID);
     }
 }

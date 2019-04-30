@@ -35,6 +35,14 @@ namespace Golden_CRM.Pages.Leads
             customer.LastName = Customer.LastName;
             customer.Email = Customer.Email;
             customer.PhoneNumber = Customer.PhoneNumber;
+            if(customer.AssignedOwner != null || customer.AssignedOwner == "Not Assigned")
+            {
+                customer.AssignedOwner = Customer.AssignedOwner;
+            }
+            else
+            {
+                customer.AssignedOwner = "Not Assigned";
+            }
 
             await _customer.SaveAsync(customer);
 

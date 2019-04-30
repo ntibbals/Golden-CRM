@@ -1,5 +1,6 @@
 ﻿using Golden_CRM.Data;
 using Golden_CRM.Models.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,13 @@ namespace Golden_CRM.Models.Services
     public class CustomerManager : ICustomer
     {
         private readonly GoldenDbContext _context;
+        private UserManager<UserDbContext> _userManager;
 
         public CustomerManager(GoldenDbContext context)
         {
             _context = context;
         }
+
 
         /// <summary>
         /// Delete Customer
@@ -42,6 +45,13 @@ namespace Golden_CRM.Models.Services
         public async Task<List<Customer>> GetCustomers()
         {
             return await _context.Customers.ToListAsync();
+        }
+
+        public async Task<List<Customer>> RecentCustomers(string userID)
+        {
+            var myCustomers = _context.Customers.Where(c => c.AssignedOwner == userID);
+            var recent = myCustomers.OrderByDescending(o => o.ID).Take(10).ToList();
+            return recent;
         }
 
         public async Task SaveAsync(Customer customer)
