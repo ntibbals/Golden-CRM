@@ -1,0 +1,31 @@
+﻿@model Golden_CRM.Models.ViewModels.LoginViewModel
+@using Microsoft.AspNetCore.Identity
+@using Golden_CRM.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";
+}
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="1011340540505-1p15rinoegqg1sg4n90rm3hk56jnu6f8.apps.googleusercontent.com">
+
+<div id="form-contain">
+    <form method="post" id="form">
+        <div asp-validation-summary="All"></div>
+
+        <div>
+            <label asp-for="Email"></label>
+            <input asp-for="Email" id="input" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label asp-for="Password"></label>
+            <input asp-for="Password" id="input" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div id="but-contain">
+            <button type="submit" id="button">Login</button>
+        </div>
+    </form>
+</div>

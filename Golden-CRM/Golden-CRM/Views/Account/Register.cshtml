@@ -1,0 +1,35 @@
+﻿@model Golden_CRM.Models.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_Layout";
+}
+
+
+<div id="reg-form-contain">
+    <form method="post" id="form">
+        <div asp-validation-summary="All"></div>
+
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" id="inpu" />
+        <span asp-validation-for="FirstName"></span>
+
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" id="input" />
+        <span asp-validation-for="LastName"></span>
+
+        <label asp-for="Email"></label>
+        <input asp-for="Email" id="input" />
+        <span asp-validation-for="Email"></span>
+
+        <label asp-for="Password"></label>
+        <input asp-for="Password" id="input" />
+        <span asp-validation-for="Password"></span>
+
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" id="input" />
+        <span asp-validation-for="ConfirmPassword"></span>
+        <div id="but-contain">
+            <button type="submit" id="button"> REGISTER </button>
+        </div>
+    </form>
+</div>

@@ -1,29 +1,37 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@using Golden_CRM.Models
+@inject UserManager<ApplicationUser> userManager
 @model List<Golden_CRM.Models.Note>
-    <div class="note-component">
-        <h1>Notes</h1>
-        @*<h2>Add a notes</h2>
+
+<div class="note-component">
+    <h1>Notes</h1>
+    @*<h2>Add a notes</h2>
         <form asp-controller="Note" asp-action="Create">
             <input type="hidden" name="userID" value="@Model.CustomerID" method="post" />
             <input type="text" name="comment" value="@Model.Comment" method="post" />
 
             <button id="button" type="submit">Add Note</button>
         </form>*@
-        <h2>Current Notes</h2>
-        @if (Model != null)
+    <h2>Current Notes</h2>
+    @if (Model != null)
+    {
+        @foreach (var note in Model)
         {
-            @foreach (var note in Model)
-            {
-                <div class="note-item">
-                    <h3>@note.Comment</h3>
-                </div>
-                <a asp-controller="Notes" asp-action="Edit" asp-route-id="@note.ID" >Edit</a>
-            }
+            <div class="note-item">
+                <h3>@note.Comment</h3>
+                <h4>@note.Date</h4>
+                @{ 
+                    var user = await userManager.FindByEmailAsync(note.UserID); 
+                }
+                <h5>@user.FirstName @user.LastName</h5>
+            </div>
+            <a asp-controller="Notes" asp-action="Edit" asp-route-id="@note.ID">Edit</a>
         }
-        else
-        {
+    }
+    else
+    {
 
-            <h3>No comments</h3>
-        }
+        <h3>No comments</h3>
+    }
 
-    </div>
+</div>
