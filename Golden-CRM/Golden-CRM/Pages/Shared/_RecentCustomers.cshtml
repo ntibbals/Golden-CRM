@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Golden_CRM.Models
+@using Golden_CRM.Models.Interfaces
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+@inject ICustomer CustomerManager
+
+@{
+    ViewData["Title"] = "Recent Customers Partial";
+    Layout = "_Layout";
+}
+
+@{ 
+
+var recent = await CustomerManager.RecentCustomers(User.Identity.Name);
+}
+<h1>Recent customers</h1>
+@{ 
+    @foreach (var item in recent)
+    {
+        <h2>@item.LastName</h2>
+    }
+}
