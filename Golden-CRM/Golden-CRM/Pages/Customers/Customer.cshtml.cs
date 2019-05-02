@@ -35,7 +35,8 @@ namespace Golden_CRM.Pages.Leads
             customer.LastName = Customer.LastName;
             customer.Email = Customer.Email;
             customer.PhoneNumber = Customer.PhoneNumber;
-            if(customer.AssignedOwner != null || customer.AssignedOwner == "Not Assigned")
+            customer.LastVisited = DateTime.Now;
+            if(customer.AssignedOwner != null || customer.AssignedOwner != "Not Assigned")
             {
                 customer.AssignedOwner = Customer.AssignedOwner;
             }

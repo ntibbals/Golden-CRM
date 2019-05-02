@@ -50,7 +50,7 @@ namespace Golden_CRM.Models.Services
         public async Task<List<Customer>> RecentCustomers(string userID)
         {
             var myCustomers = _context.Customers.Where(c => c.AssignedOwner == userID);
-            var recent = myCustomers.OrderByDescending(o => o.ID).Take(10).ToList();
+            var recent = myCustomers.OrderByDescending(o => o.LastVisited).Take(10).ToList();
             return recent;
         }
 

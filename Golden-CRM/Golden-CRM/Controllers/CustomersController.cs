@@ -76,7 +76,7 @@ namespace Golden_CRM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID, FirstName, LastName, Email, PhoneNumber")]Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("ID, FirstName, LastName, Email, PhoneNumber, LastVisited")]Customer customer)
         {
             if(id != customer.ID)
             {
@@ -87,6 +87,7 @@ namespace Golden_CRM.Controllers
             {
                 try
                 {
+                    customer.LastVisited= DateTime.Now;
                     await _context.SaveAsync(customer);
                 }
                 catch(DbUpdateConcurrencyException)

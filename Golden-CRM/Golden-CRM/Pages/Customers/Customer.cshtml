@@ -40,6 +40,9 @@
             @await Component.InvokeAsync("Notes", Model.ID)
 
         </div>
+        <div class="header-outer">
+            @{<partial name="_RecentCustomers" />}
+        </div>
         @*<div class="current-notes">
             <h1>Current Notes</h1>
 

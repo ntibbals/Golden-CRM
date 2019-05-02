@@ -15,6 +15,7 @@ namespace Golden_CRM.Models
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string AssignedOwner { get; set; }
+        public DateTime LastVisited { get; set; }
 
         //Navigation Properties
         public ICollection<Note> Notes { get; set; }
