@@ -16,15 +16,6 @@
             <a asp-controller="Account" id="button-new" asp-action="Login"><i class="fas fa-sign-in-alt"></i>Log In</a>
 
         }
-        @if (signInManager.IsSignedIn(User))
-        {
-            {
-                var email = @User.Claims.First(c => c.Type == "Email").Value;
-
-                <a href='/Profile/UserProfile/@email' id="button-new">User Profile</a>
-            }
-
-        }
         @if (!signInManager.IsSignedIn(User))
         {
             <a asp-controller="Account" id="button-new" asp-action="Register">Register</a>
@@ -39,8 +30,7 @@
             <a asp-page="/Admin/Dashboard" id="button-new">Admin Dashboard</a>
 
         }
-        <a asp-controller="Cart" id="button-new" asp-action="Index" asp-route-userID="@User.Identity.Name"><i class="fas fa-shopping-cart"></i>Cart</a>
-        <a asp-page="/Customers/Customer" asp-route-id="null" id="button-new"><i class="far fa-plus-square"></i></a>
+        <a asp-page="/Customers/Customer" asp-route-id="null" id="button-new"><i class="far fa-plus-square">Add Customer</i></a>
 
         <a asp-page="/Index" asp-route-id="null" id="button-new"><i class="fas fa-home"></i></a>
         <a asp-controller="Customers" asp-action="Index" asp-route-userID="@User.Identity.Name">Customer Home Page</a>
@@ -75,8 +65,4 @@
             </ul>
         </div>
     </nav>
-    <div id="indexcontain">
-        <img src="~/assets/Logo.png" alt="Pogs R Us Logo" class="head-logo" />
-
-    </div>
 </div>
