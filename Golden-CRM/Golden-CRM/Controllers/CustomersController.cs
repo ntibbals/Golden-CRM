@@ -20,15 +20,15 @@ namespace Golden_CRM.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string userID)
         {
-            var customers = await _context.GetCustomers();
+            var customers = await _context.GetCustomers(userID);
             if(customers == null)
             {
                 return View("empty");
             }
 
-            return View(customers.ToList());
+            return View(customers);
         }
 
         public async Task<IActionResult> Details(int id)

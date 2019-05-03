@@ -41,6 +41,8 @@ namespace Golden_CRM
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminOnly", policy => policy.RequireRole(ApplicationRoles.Admin));
+                options.AddPolicy("MemberOnly", policy => policy.RequireRole(ApplicationRoles.Member));
+
             });
 
             services.AddDbContext<UserDbContext>(options =>

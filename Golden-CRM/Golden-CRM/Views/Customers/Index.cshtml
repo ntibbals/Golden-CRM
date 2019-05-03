@@ -16,29 +16,6 @@
                 <p>@item.PhoneNumber</p>
                 <a asp-page="/Customers/Customer" asp-route-id="@item.ID" id="button-new">Details</a>
             </div>
-            <div class="current-notes">
-                <div id="component">
-                    @await Component.InvokeAsync("Notes", @item.ID)
-
-                </div>
-                <h1>Current Notes</h1>
-
-                @if (@item.Notes != null)
-                {
-                    @foreach (var note in item.Notes)
-                    {
-                        <div class="note-item">
-                            <h3>@note.Comment</h3>
-                        </div>
-                    }
-                }
-                else
-                {
-
-                    <h3>No comments</h3>
-                }
-
-            </div>
         }
 
 
