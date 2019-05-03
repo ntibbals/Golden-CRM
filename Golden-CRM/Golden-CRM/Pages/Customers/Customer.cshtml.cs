@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Golden_CRM.Models;
 using Golden_CRM.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Golden_CRM.Pages.Leads
 {
+    [Authorize(Policy = "AdminOnly")]
     public class CustomerModel : PageModel
     {
         private readonly ICustomer _customer;
@@ -26,6 +28,12 @@ namespace Golden_CRM.Pages.Leads
         public async Task OnGetAsync()
         {
             Customer = await _customer.FindCustomer(ID.GetValueOrDefault()) ?? new Customer();
+            if(Customer.FirstName != null)
+            {
+                Customer.LastVisited = DateTime.Now;
+                await _customer.SaveAsync(Customer);
+
+            }
         }
 
         public async Task<IActionResult> OnPost()

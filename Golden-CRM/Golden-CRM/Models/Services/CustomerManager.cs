@@ -42,9 +42,9 @@ namespace Golden_CRM.Models.Services
             return customer;
         }
 
-        public async Task<List<Customer>> GetCustomers()
+        public async Task<List<Customer>> GetCustomers(string userID)
         {
-            return await _context.Customers.ToListAsync();
+            return await _context.Customers.Where(c => c.AssignedOwner == userID).ToListAsync();
         }
 
         public async Task<List<Customer>> RecentCustomers(string userID)
