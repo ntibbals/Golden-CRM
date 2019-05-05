@@ -28,6 +28,10 @@
             <div>
                 <label asp-for="Customer.AssignedOwner"></label>
                 <input asp-for="Customer.AssignedOwner" id="input" />
+                <select asp-for="Customer.AssignedOwner">
+                    <option value="10/21">10/21</option>
+                </select>
+
             </div>
             <div id="button-contain">
                 <button type="submit" value"Save" id="button">Save</button>
@@ -39,9 +43,6 @@
 
             @await Component.InvokeAsync("Notes", Model.ID)
 
-        </div>
-        <div class="header-outer">
-            @{<partial name="_RecentCustomers" />}
         </div>
     </div>
 </div>
