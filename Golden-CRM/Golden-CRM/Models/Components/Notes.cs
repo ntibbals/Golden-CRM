@@ -16,16 +16,6 @@ namespace Golden_CRM.Models.Components
         {
             _context = context;
         }
-        //public async Task<IViewComponentResult> InvokeAsync(int id)
-        //{
-        //    Note note = new Note();
-
-        //    if (note != null)
-        //    {
-        //        return View(note);
-        //    }
-        //    return View(null);
-        //}
 
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
@@ -37,17 +27,6 @@ namespace Golden_CRM.Models.Components
             }
             return View(null);
         }
-
-        //public async Task<IViewComponentResult> InvokeAsync(int id)
-        //{
-        //    var customer = _context.Customers.Where(n => n.ID == id);
-
-        //    if (customer != null)
-        //    {
-        //        return View(customer);
-        //    }
-        //    return View(null);
-        //}
 
     }
 }

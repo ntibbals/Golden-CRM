@@ -52,6 +52,7 @@ namespace Golden_CRM
             options.EnableSensitiveDataLogging().UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddScoped<ICustomer, CustomerManager>();
             services.AddScoped<INote, NoteManager>();
+            services.AddScoped<ISearch, SearchManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
