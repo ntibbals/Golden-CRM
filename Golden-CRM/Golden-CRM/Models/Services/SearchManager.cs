@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Golden_CRM.Models.Services
@@ -18,13 +19,11 @@ namespace Golden_CRM.Models.Services
         }
         public async Task<List<Customer>> ConvertQuery(string query)
         {
-            string[] splitName = query.Split('@');
-            var isNumeric = double.TryParse(query, out double result);
-            if (isNumeric)
+            if (Regex.Match(query, @"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$").Success)
             {
                return await SearchCustomerPhone(query);
             }
-            else if(splitName[1] != null)
+            else if(query.Contains("@"))
             {
                 return await SearchCustomerEmail(query);
             }

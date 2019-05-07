@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Golden_CRM.Models;
 using Golden_CRM.Models.Interfaces;
@@ -42,7 +43,7 @@ namespace Golden_CRM.Pages.Leads
             customer.FirstName = Customer.FirstName;
             customer.LastName = Customer.LastName;
             customer.Email = Customer.Email;
-            customer.PhoneNumber = Customer.PhoneNumber;
+            customer.PhoneNumber = FormatPhoneNumber(Customer.PhoneNumber);
             customer.LastVisited = DateTime.Now;
             if(customer.AssignedOwner != null || customer.AssignedOwner != "Not Assigned")
             {
@@ -63,6 +64,18 @@ namespace Golden_CRM.Pages.Leads
             await _customer.DeleteAsync(ID.Value);
 
             return RedirectToPage("/Index");
+        }
+        private string FormatPhoneNumber(string phoneNum)
+        {
+            string phoneFormat = "(###) ###-####";
+
+            Regex regexObj = new Regex(@"[^\d]");
+            phoneNum = regexObj.Replace(phoneNum, "");
+            if (phoneNum.Length > 0)
+            {
+                phoneNum = Convert.ToInt64(phoneNum).ToString(phoneFormat);
+            }
+            return phoneNum;
         }
     }
 }
