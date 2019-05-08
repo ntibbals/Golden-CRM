@@ -16,5 +16,8 @@ namespace Golden_CRM.Models
         [MaxLength]
         public string Comment { get; set; }
         public DateTime Date { get; set; }
+
     }
+
+
 }

@@ -12,11 +12,12 @@ namespace Golden_CRM.Models.Services
     public class CustomerManager : ICustomer
     {
         private readonly GoldenDbContext _context;
-        private UserManager<UserDbContext> _userManager;
+        private readonly UserDbContext _userManager;
 
-        public CustomerManager(GoldenDbContext context)
+        public CustomerManager(GoldenDbContext context, UserDbContext userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
 
@@ -70,6 +71,17 @@ namespace Golden_CRM.Models.Services
             }
 
             await _context.SaveChangesAsync();
+        }
+        public async Task<List<ApplicationUser>> GetUsers()
+        {
+
+            //var users = _userManager.Users.Where(x => x.Roles.Select(y => y.Id).Contains(ddlRole)).ToList();
+            //var role = _userManager.Roles.SingleOrDefault(m => m.Name == "role");
+            //var usersInRole = _userManager.Users.Where(m => m.Roles.Any(r => r.RoleId == role.Id));
+            var allUsers = _userManager.Users.ToList();
+
+
+            return allUsers;
         }
     }
 }

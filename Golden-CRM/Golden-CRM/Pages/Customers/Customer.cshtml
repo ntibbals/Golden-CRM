@@ -1,9 +1,13 @@
 ﻿@page "{id?}"
 @model Golden_CRM.Pages.Leads.CustomerModel
+@using Golden_CRM.Models.Interfaces
+@inject ICustomer  CustomerManager
 @{
     Layout = "_Layout";
 }
-
+@{ 
+    var users = await CustomerManager.GetUsers();
+}
 <h1> Individual Customer Page</h1>
 
 <div>
@@ -27,12 +31,20 @@
             </div>
             <div>
                 <label asp-for="Customer.AssignedOwner"></label>
-                <input asp-for="Customer.AssignedOwner" id="input" />
                 <select asp-for="Customer.AssignedOwner">
-                    <option value="10/21">10/21</option>
+                    <option value="Unassigned">Unassigned</option>
+                    @foreach (var item in users)
+                    {
+                        <option value="@item">@item</option>
+
+                    }
                 </select>
+                <span asp-validation-for="Customer.AssignedOwner" class="text-danger"></span>
 
             </div>
+            <label asp-for="Customer.Priority" class="control-label"></label>
+            <select asp-for="Customer.Priority" class="form-control" asp-items="@Html.GetEnumSelectList<Golden_CRM.Models.Priorities>()"></select>
+            <span asp-validation-for="Customer.Priority" class="text-danger"></span>
             <div id="button-contain">
                 <button type="submit" value"Save" id="button">Save</button>
             </div>

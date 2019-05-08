@@ -13,4 +13,9 @@ namespace Golden_CRM.Models
         public string LastName { get; set; }
 
     }
+    public static class ApplicationRoles
+    {
+        public const string Member = "Member";
+        public const string Admin = "Admin";
+    }
 }
