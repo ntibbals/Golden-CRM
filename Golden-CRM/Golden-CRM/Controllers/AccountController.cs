@@ -36,6 +36,7 @@ namespace Golden_CRM.Controllers
                     LastName = rvm.LastName,
                     UserName = rvm.Email,
                     Email = rvm.Email
+ 
                 };
 
                 var result = await _userManager.CreateAsync(user, rvm.Password);
