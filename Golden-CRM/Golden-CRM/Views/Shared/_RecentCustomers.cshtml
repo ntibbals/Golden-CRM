@@ -13,7 +13,6 @@
 @{
     @foreach (var item in recent)
     {
-        <h2>@item.LastName</h2>
-        <a asp-page="/Customers/Customer" asp-route-id="@item.ID" id="button-new">Details</a>
+        <a asp-page="/Customers/Customer" asp-route-id="@item.ID" id="button-new">@item.FirstName @item.LastName</a>
     }
 }

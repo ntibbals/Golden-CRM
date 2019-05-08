@@ -19,6 +19,18 @@ namespace Golden_CRM.Models.Services
         }
         public async Task<List<Customer>> ConvertQuery(string query)
         {
+            /*********************** PATTERN MATCHING - NOT YET SUPPORTED *********************************************/
+            //switch (query)
+            //{
+            //    case var value when new Regex(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$").IsMatch(value):
+            //        return await SearchCustomerPhone(query);
+            //    case query.Contains("@"):
+            //        return await SearchCustomerEmail(query);
+            //    default:
+            //        return await SearchCustomerName(query);
+
+
+            //}
             if (Regex.Match(query, @"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$").Success)
             {
                return await SearchCustomerPhone(query);
@@ -44,13 +56,27 @@ namespace Golden_CRM.Models.Services
         {
 
             string[] split = name.Split(" ");
-            var FName = await _context.Customers.Where(c => c.FirstName == name[0].ToString() || c.LastName == name[0].ToString() || c.LastName == name[1].ToString()).ToListAsync();
-            return FName;
+            List<Customer> results = new List<Customer>();
+            for (int i = 0; i < split.Length; i++)
+            {
+                var result = await _context.Customers.FirstOrDefaultAsync(c => c.FirstName == split[i] || c.LastName == split[i]);
+                if(!results.Contains(result))
+                results.Add(result);
+            }
+            return results;
         }
 
-        public async Task<List<Customer>> SearchCustomerPhone(string num)
+        public async Task<List<Customer>> SearchCustomerPhone(string phoneNum)
         {
-            return await _context.Customers.Where(c => c.PhoneNumber == num).ToListAsync();
+            string phoneFormat = "(###) ###-####";
+
+            Regex regexObj = new Regex(@"[^\d]");
+            phoneNum = regexObj.Replace(phoneNum, "");
+            if (phoneNum.Length > 0)
+            {
+                phoneNum = Convert.ToInt64(phoneNum).ToString(phoneFormat);
+            }
+            return await _context.Customers.Where(c => c.PhoneNumber == phoneNum).ToListAsync();
 
         }
     }
