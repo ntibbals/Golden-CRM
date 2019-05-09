@@ -25,3 +25,16 @@
             @await Component.InvokeAsync("Search")
         </div>
     </div>
+
+<h1>Upload Customers</h1>
+    <div id="form-contain">
+        <form asp-controller="Customers" asp-action="Upload">
+            <div id="url-contain">
+                <label>File</label>
+                <input  type="file" id="input" />
+            </div>
+            <div id="but-contain">
+                <button type="submit" value="Save" id="button">Save</button>
+            </div>
+        </form>
+    </div>
