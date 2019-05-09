@@ -120,5 +120,27 @@ namespace Golden_CRM.Controllers
             await _context.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Upload(string[] url)
+        {
+
+            foreach (var item in url)
+            {
+
+                string[] fields = item.Split(',');
+                Customer cust = (new Customer
+                {
+                    FirstName = fields[0],
+                    LastName = fields[1],
+                    Email = fields[2],
+                    PhoneNumber = fields[3]
+                });
+                await _context.SaveAsync(cust);
+            }
+
+            //var json = JsonConvert.SerializeObject(list);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
