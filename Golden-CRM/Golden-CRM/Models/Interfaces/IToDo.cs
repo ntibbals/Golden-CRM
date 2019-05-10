@@ -7,9 +7,9 @@ namespace Golden_CRM.Models.Interfaces
 {
     public interface IToDo
     {
-        Task<Note> FindToDo(int id);
-        Task<List<Note>> FindToDos(int customerID);
-        Task<List<Note>> GetToDos();
+        Task<ToDo> FindToDo(int id);
+        Task<List<ToDo>> FindToDos(int customerID);
+        Task<List<ToDo>> GetToDos();
         Task UpdateToDo(ToDo toDo);
         Task SaveAsync(ToDo toDo);
         Task DeleteAsync(int id);

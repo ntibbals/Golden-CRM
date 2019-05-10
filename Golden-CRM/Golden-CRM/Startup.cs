@@ -53,6 +53,8 @@ namespace Golden_CRM
             services.AddScoped<ICustomer, CustomerManager>();
             services.AddScoped<INote, NoteManager>();
             services.AddScoped<ISearch, SearchManager>();
+            services.AddScoped<IToDo, ToDoManager>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
