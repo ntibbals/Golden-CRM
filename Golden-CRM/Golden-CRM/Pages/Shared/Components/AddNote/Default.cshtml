@@ -17,6 +17,11 @@
             <input type="hidden" asp-for="@Model.CustomerID" id="input" />
             <input type="hidden" asp-for="@Model.UserID" value="@email" id="input" />
             <div>
+                <label asp-for="@Model.ContactType" class="control-label"></label>
+                <select asp-for="@Model.ContactType" class="form-control" asp-items="@Html.GetEnumSelectList<Golden_CRM.Models.ContactTypes>()"></select>
+                <span asp-validation-for="@Model.ContactType" class="text-danger"></span>
+            </div>
+            <div>
                 <label asp-for="@Model.Comment"></label>
                 <input asp-for="@Model.Comment" id="input" />
             </div>

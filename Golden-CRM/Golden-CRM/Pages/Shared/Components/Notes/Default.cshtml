@@ -12,6 +12,7 @@
             <div class="note-item">
                 <h3>@note.Comment</h3>
                 <h4>@note.Date</h4>
+                <h5>@note.ContactType</h5>
                 @{ 
                     var user = await userManager.FindByEmailAsync(note.UserID); 
                 }

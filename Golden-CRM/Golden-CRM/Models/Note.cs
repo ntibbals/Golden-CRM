@@ -12,6 +12,7 @@ namespace Golden_CRM.Models
         public int ID { get; set; }
         public int CustomerID { get; set; }
         public string UserID { get; set; }
+        public ContactTypes ContactType { get; set; }
         [Column(TypeName = "varchar(max)")]
         [MaxLength]
         public string Comment { get; set; }
@@ -19,5 +20,11 @@ namespace Golden_CRM.Models
 
     }
 
+    public enum ContactTypes
+    {
+        Phone,
+        Email,
+        Other
+    }
 
 }
