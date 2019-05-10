@@ -7,24 +7,18 @@ using System.Threading.Tasks;
 
 namespace Golden_CRM.Models
 {
-    public class Note
+    public class ToDo
     {
         public int ID { get; set; }
         public int CustomerID { get; set; }
         public string UserID { get; set; }
+        public string AssignedOwner { get; set; }
         public ContactTypes ContactType { get; set; }
         [Column(TypeName = "varchar(max)")]
         [MaxLength]
         public string Comment { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime DueDate { get; set; }
 
-    }
-
-    public enum ContactTypes
-    {
-        Phone,
-        Email,
-        Other
     }
 
 }
