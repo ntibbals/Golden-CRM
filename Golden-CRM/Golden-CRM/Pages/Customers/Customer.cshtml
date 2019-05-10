@@ -45,8 +45,11 @@
             <label asp-for="Customer.Priority" class="control-label"></label>
             <select asp-for="Customer.Priority" class="form-control" asp-items="@Html.GetEnumSelectList<Golden_CRM.Models.Priorities>()"></select>
             <span asp-validation-for="Customer.Priority" class="text-danger"></span>
-            <div id="button-contain">
-                <button type="submit" value"Save" id="button">Save</button>
+            <div id="but-contain">
+                <button type="submit" value="Save" id="button">Save</button>
+            </div>
+            <div id="but-contain">
+                <button type="submit" asp-page-handler="Delete" id="button">Delete</button>
             </div>
         </form>
 

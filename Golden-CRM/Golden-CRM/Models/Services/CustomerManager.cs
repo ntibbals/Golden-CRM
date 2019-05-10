@@ -2,8 +2,10 @@
 using Golden_CRM.Models.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -82,6 +84,27 @@ namespace Golden_CRM.Models.Services
 
 
             return allUsers;
+        }
+        public async Task Upload(string csv)
+        {
+
+            string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, csv); /// combines root paths to read file in
+            string[] parsedResults = File.ReadAllLines(fullPath); /// reads file into an array
+
+            foreach (string item in parsedResults.Skip(1)) /// runs through for each, skipping initial title line in document
+            {
+                if (!string.IsNullOrEmpty(item))
+                {
+                    string[] column = item.Split(","); ///splits array into comma delimited array
+                    await SaveAsync(new Customer
+                    {
+                        FirstName = column[0], 
+                        LastName = column[1],
+                        Email = column[2],
+                        PhoneNumber = column[3],
+                    });
+                }
+            }
         }
     }
 }

@@ -1,9 +1,12 @@
 ﻿using System;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Golden_CRM.Models;
 using Golden_CRM.Models.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -121,25 +124,9 @@ namespace Golden_CRM.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Upload(string[] url)
+        public async Task<IActionResult> Upload(string csv)
         {
-
-            foreach (var item in url)
-            {
-
-                string[] fields = item.Split(',');
-                Customer cust = (new Customer
-                {
-                    FirstName = fields[0],
-                    LastName = fields[1],
-                    Email = fields[2],
-                    PhoneNumber = fields[3]
-                });
-                await _context.SaveAsync(cust);
-            }
-
-            //var json = JsonConvert.SerializeObject(list);
-
+            await _context.Upload(csv);
             return RedirectToAction(nameof(Index));
         }
     }
