@@ -16,9 +16,14 @@ namespace Golden_CRM.Models.Services
         {
             _context = context;
         }
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            ToDo toDo = await _context.ToDos.FindAsync(id);
+            if (toDo != null)
+            {
+                _context.Remove(toDo);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<ToDo> FindToDo(int id)
