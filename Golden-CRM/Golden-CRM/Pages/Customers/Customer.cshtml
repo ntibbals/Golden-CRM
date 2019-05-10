@@ -58,6 +58,10 @@
 
             @await Component.InvokeAsync("Notes", Model.ID)
 
+            @await Component.InvokeAsync("ToDos", Model.ID)
+
+            @await Component.InvokeAsync("AddToDo", Model.ID)
+
         </div>
     </div>
 </div>

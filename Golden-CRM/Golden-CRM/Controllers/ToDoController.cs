@@ -31,7 +31,7 @@ namespace Golden_CRM.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID, CustomerID, UserID, AssignedOwner, ContactType, Comment, DueDate, CompletedDate")] ToDo toDo)
+        public async Task<IActionResult> Create([Bind("ID, CustomerID, UserID, ContactType, Comment, Assigned Owner, DueDate")] ToDo toDo)
         {
 
             try
@@ -84,7 +84,7 @@ namespace Golden_CRM.Controllers
         {
             var toDo = await _context.FindToDo(id);
 
-            if (note == null)
+            if (toDo == null)
             {
                 return NotFound();
             }
