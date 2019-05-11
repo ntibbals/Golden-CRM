@@ -26,6 +26,13 @@ namespace Golden_CRM.Models.Services
             }
         }
 
+        public async Task<string> FindName(int customerId)
+        {
+            var name = await _context.Customers.FirstOrDefaultAsync(c => c.ID == customerId);
+            var fullName = name.FirstName + " " + name.LastName;
+            return fullName;
+        }
+
         public async Task<ToDo> FindToDo(int id)
         {
             ToDo toDo = await _context.ToDos.FirstOrDefaultAsync(t => t.ID == id);
@@ -33,9 +40,9 @@ namespace Golden_CRM.Models.Services
             return toDo;
         }
 
-        public async Task<List<ToDo>> FindToDos(int customerID)
+        public async Task<List<ToDo>> FindToDos(string userId)
         {
-            var toDos = _context.ToDos.Where(t => t.CustomerID == customerID);
+            var toDos = _context.ToDos.Where(t => t.UserID == userId);
 
             return await toDos.ToListAsync();
         }

@@ -18,9 +18,9 @@ namespace Golden_CRM.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index(int customerID)
+        public async Task<IActionResult> Index(string userId)
         {
-            var toDos = await _context.FindToDos(customerID);
+            var toDos = await _context.FindToDos(userId);
 
             return View(toDos);
         }
@@ -38,6 +38,7 @@ namespace Golden_CRM.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    toDo.CustomerName = await _context.FindName(toDo.CustomerID);
                     toDo.ID = 0;
                     await _context.SaveAsync(toDo);
                     return LocalRedirect($"~/Customers/Customer/{toDo.CustomerID}");
