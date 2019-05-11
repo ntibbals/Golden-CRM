@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Golden_CRM.Models
+@inject UserManager<ApplicationUser> userManager
+@model List<Golden_CRM.Models.ToDo>
+
+<div class="note-component">
+    <h2>Completed Tasks</h2>
+    @if (Model != null)
+    {
+    @foreach (var note in Model)
+        {
+    <div class="note-item">
+        <h3>@note.Comment</h3>
+        <h4>@note.CompletedDate</h4>
+        <h5>@note.ContactType</h5>
+        @{
+                    var user = await userManager.FindByEmailAsync(note.UserID);
+        }
+        <h5>@user.FirstName @user.LastName</h5>
+    </div>
+    <a asp-controller="Notes" asp-action="Edit" asp-route-id="@note.ID">Edit</a>
+        }
+    }
+    else
+    {
+
+    <h3>No Previous Notes</h3>
+    }
+
+</div>

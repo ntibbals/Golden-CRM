@@ -29,5 +29,6 @@ namespace Golden_CRM.Data
         }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Note> Notes { get; set; }
+        public DbSet<ToDo> ToDos { get; set; }
     }
 }

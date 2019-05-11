@@ -11,6 +11,7 @@ namespace Golden_CRM.Models
     {
         public int ID { get; set; }
         public int CustomerID { get; set; }
+        public string CustomerName { get; set; }
         public string UserID { get; set; }
         public string AssignedOwner { get; set; }
         public ContactTypes ContactType { get; set; }
@@ -18,6 +19,7 @@ namespace Golden_CRM.Models
         [MaxLength]
         public string Comment { get; set; }
         public DateTime DueDate { get; set; }
+        public DateTime CompletedDate { get; set; }
 
     }
 
