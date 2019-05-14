@@ -38,6 +38,11 @@ namespace Golden_CRM.Models.Services
             }
         }
 
+        /// <summary>
+        /// Find customers based on id
+        /// </summary>
+        /// <param name="id">customer id</param>
+        /// <returns>Customer</returns>
         public async Task<Customer> FindCustomer(int id)
         {
             Customer customer = await _context.Customers.FirstOrDefaultAsync(c => c.ID == id);
@@ -45,11 +50,21 @@ namespace Golden_CRM.Models.Services
             return customer;
         }
 
+        /// <summary>
+        /// Get all customers based on user ID
+        /// </summary>
+        /// <param name="userID">user ID</param>
+        /// <returns>list of all customers</returns>
         public async Task<List<Customer>> GetCustomers(string userID)
         {
             return await _context.Customers.Where(c => c.AssignedOwner == userID).ToListAsync();
         }
 
+        /// <summary>
+        /// Get a list of 10 most recent customers by user id
+        /// </summary>
+        /// <param name="userID">user ID</param>
+        /// <returns>list of last 10 customers</returns>
         public async Task<List<Customer>> RecentCustomers(string userID)
         {
             var myCustomers = _context.Customers.Where(c => c.AssignedOwner == userID);
@@ -57,6 +72,11 @@ namespace Golden_CRM.Models.Services
             return recent;
         }
 
+        /// <summary>
+        /// Save customer
+        /// </summary>
+        /// <param name="customer">customer</param>
+        /// <returns></returns>
         public async Task SaveAsync(Customer customer)
         {
             Customer cust = await _context.Customers.FirstOrDefaultAsync(c => customer.ID == customer.ID);
@@ -74,6 +94,11 @@ namespace Golden_CRM.Models.Services
 
             await _context.SaveChangesAsync();
         }
+
+        /// <summary>
+        /// Get list of users
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ApplicationUser>> GetUsers()
         {
 
@@ -85,6 +110,12 @@ namespace Golden_CRM.Models.Services
 
             return allUsers;
         }
+
+        /// <summary>
+        /// Upload a list of new customers
+        /// </summary>
+        /// <param name="csv">csv file</param>
+        /// <returns></returns>
         public async Task Upload(string csv)
         {
 
