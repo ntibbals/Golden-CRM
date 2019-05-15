@@ -60,6 +60,11 @@ namespace Golden_CRM.Models.Services
             return await _context.Customers.Where(c => c.AssignedOwner == userID).ToListAsync();
         }
 
+        public async Task<List<Customer>> GetCustomers()
+        {
+            return await _context.Customers.ToListAsync();
+        }
+
         /// <summary>
         /// Get a list of 10 most recent customers by user id
         /// </summary>

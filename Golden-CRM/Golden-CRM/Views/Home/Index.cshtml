@@ -1,7 +1,42 @@
-﻿
+﻿@using Golden_CRM.Models
+@model IEnumerable<Golden_CRM.Models.Customer>
+
 @{
     Layout = "_Layout";
 }
 
 
 <h1>Golden CRM</h1>
+<h2>All Customers</h2>
+<div class="cust-index-contain">
+    @foreach (var item in Model)
+    {
+        <div class="ind-cust-contain">
+            <p>@item.FirstName</p>
+            <p>@item.LastName</p>
+            <p>@item.Email</p>
+            <p>@item.PhoneNumber</p>
+            <a asp-page="/Customers/Customer" asp-route-id="@item.ID" id="button-new">Details</a>
+        </div>
+    }
+
+    <div class="header-outer">
+        @{<partial name="_RecentCustomers" />}
+    </div>
+    <div id="component">
+        @await Component.InvokeAsync("Search")
+    </div>
+</div>
+
+<h1>Upload Customers</h1>
+<div id="form-contain">
+    <form asp-controller="Customers" asp-action="Upload">
+        <div id="url-contain">
+            <label>File</label>
+            <input type="file" id="input" name="csv" />
+        </div>
+        <div id="but-contain">
+            <button type="submit" value="Save" id="button">Save</button>
+        </div>
+    </form>
+</div>

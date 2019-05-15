@@ -33,8 +33,8 @@
         }
         <a asp-page="/Customers/Customer" asp-route-id="null" id="button-new"><i class="far fa-plus-square">Add Customer</i></a>
 
-        <a asp-page="/Index" asp-route-id="null" id="button-new"><i class="fas fa-home"></i></a>
-        <a asp-controller="Customers" asp-action="Index" asp-route-userID="@User.Identity.Name">Customer Home Page</a>
+        <a id="links" href='/Home/Index'><i class="fas fa-home"></i></a>
+        <a asp-controller="Customers" asp-action="Index" asp-route-userID="@User.Identity.Name">My Customers</a>
         <a asp-controller="ToDo" asp-action="Index" asp-route-userID="@User.Identity.Name">Assigned Tasks</a>
 
     </div>
