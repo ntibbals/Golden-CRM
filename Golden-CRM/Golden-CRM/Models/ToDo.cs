@@ -18,7 +18,9 @@ namespace Golden_CRM.Models
         [Column(TypeName = "varchar(max)")]
         [MaxLength]
         public string Comment { get; set; }
+        [DataType(DataType.Date)]
         public DateTime DueDate { get; set; }
+
         public DateTime CompletedDate { get; set; }
 
     }
