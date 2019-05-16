@@ -18,6 +18,11 @@ namespace Golden_CRM.Controllers
         {
             _context = context;
         }
+        /// <summary>
+        /// This method handles view for ToDos/tasks based on user ID
+        /// </summary>
+        /// <param name="userId">user id</param>
+        /// <returns></returns>
         public async Task<IActionResult> Index(string userId)
         {
             var toDos = await _context.FindToDos(userId);
@@ -25,10 +30,16 @@ namespace Golden_CRM.Controllers
             return View(toDos);
         }
 
-        public IActionResult Creater()
+        public IActionResult Create()
         {
             return View();
         }
+
+        /// <summary>
+        /// This method handles adding todos/tasks into db
+        /// </summary>
+        /// <param name="toDo"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID, CustomerID, UserID, ContactType, Comment, Assigned Owner, DueDate")] ToDo toDo)
@@ -53,6 +64,12 @@ namespace Golden_CRM.Controllers
 
         }
 
+        /// <summary>
+        /// This method handles edit functionality for ToDo's/notes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="toDo"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID, CustomerID, UserID, AssignedOwner, ContactType, Comment, DueDate, CompletedDate")] ToDo toDo)
@@ -81,6 +98,11 @@ namespace Golden_CRM.Controllers
             return View(toDo);
         }
 
+        /// <summary>
+        /// This method handles delete routing for todo's/tasks
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int id)
         {
             var toDo = await _context.FindToDo(id);
@@ -93,6 +115,11 @@ namespace Golden_CRM.Controllers
             return View(toDo);
         }
 
+        /// <summary>
+        /// This method controls delete functionality for todos/tasks
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
