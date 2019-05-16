@@ -22,7 +22,11 @@ namespace Golden_CRM.Controllers
             _context = context;
         }
 
-
+        /// <summary>
+        /// Customers Home page index view
+        /// </summary>
+        /// <param name="userID">user ID</param>
+        /// <returns>User to Customer home page</returns>
         public async Task<IActionResult> Index(string userID)
         {
             var customers = await _context.GetCustomers(userID);
@@ -34,6 +38,11 @@ namespace Golden_CRM.Controllers
             return View(customers);
         }
 
+        /// <summary>
+        /// Controlls customer details view - finds customer by id
+        /// </summary>
+        /// <param name="id">customer id</param>
+        /// <returns>details view</returns>
         public async Task<IActionResult> Details(int id)
         {
             var customer = await _context.FindCustomer(id);
@@ -46,11 +55,20 @@ namespace Golden_CRM.Controllers
             return View(customer);
         }
 
+        /// <summary>
+        /// Method to create a view
+        /// </summary>
+        /// <returns>Create view</returns>
         public IActionResult Create()
         {
             return View();
         }
 
+        /// <summary>
+        /// This method creates a customer in db
+        /// </summary>
+        /// <param name="customer">customer object</param>
+        /// <returns>View of customer</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID, FirstName, LastName, Email, PhoneNumber")] Customer customer)
@@ -70,6 +88,11 @@ namespace Golden_CRM.Controllers
             }
         }
 
+        /// <summary>
+        /// This method contorls edit view
+        /// </summary>
+        /// <param name="id">customer id</param>
+        /// <returns></returns>
         public async Task<IActionResult> Edit(int id)
         {
             var customer = await _context.FindCustomer(id);
@@ -77,6 +100,12 @@ namespace Golden_CRM.Controllers
             return View(customer);
         }
 
+        /// <summary>
+        /// This method edits customer located in db
+        /// </summary>
+        /// <param name="id">id of existing customer</param>
+        /// <param name="customer">new customer information</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID, FirstName, LastName, Email, PhoneNumber, LastVisited")]Customer customer)
@@ -104,6 +133,11 @@ namespace Golden_CRM.Controllers
             return View(customer);
         }
 
+        /// <summary>
+        /// This method handles delete views
+        /// </summary>
+        /// <param name="id">customer id for delete</param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int id)
         {
             var customer = await _context.FindCustomer(id);
@@ -116,6 +150,11 @@ namespace Golden_CRM.Controllers
             return View(customer);
         }
 
+        /// <summary>
+        /// This method removes customer from db
+        /// </summary>
+        /// <param name="id">customer id to remove</param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -124,6 +163,11 @@ namespace Golden_CRM.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// This method uploads customers into db through csv file
+        /// </summary>
+        /// <param name="csv">csv file path</param>
+        /// <returns></returns>
         public async Task<IActionResult> Upload(string csv)
         {
             await _context.Upload(csv);
