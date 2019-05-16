@@ -19,6 +19,11 @@ namespace Golden_CRM.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// This method finds all notes based on customer id
+        /// </summary>
+        /// <param name="customerID">customer id</param>
+        /// <returns></returns>
         public async Task<IActionResult> Index(int customerID)
         {
             var notes = await _context.FindNotes(customerID);
@@ -31,6 +36,11 @@ namespace Golden_CRM.Controllers
             return View();
         }
 
+        /// <summary>
+        /// This method handles creation of notes in db
+        /// </summary>
+        /// <param name="note"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID, CustomerID, UserID, Comment, Date")] Note note)
@@ -53,6 +63,11 @@ namespace Golden_CRM.Controllers
             }
 
         }
+        /// <summary>
+        /// This method handles edit view for notes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Edit(int id)
         {
             var note = await _context.FindNote(id);
@@ -60,6 +75,12 @@ namespace Golden_CRM.Controllers
             return View(note);
         }
 
+        /// <summary>
+        /// This method handles edit funcitonality for notes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="note"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID, CustomerID, UserID, Comment, Date")] Note note)
@@ -88,6 +109,11 @@ namespace Golden_CRM.Controllers
             return View(note);
         }
 
+        /// <summary>
+        /// This method handles delete views for notes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int id)
         {
             var note = await _context.FindNote(id);
@@ -100,6 +126,11 @@ namespace Golden_CRM.Controllers
             return View(note);
         }
 
+        /// <summary>
+        /// This method handles delete funcitonality for notes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

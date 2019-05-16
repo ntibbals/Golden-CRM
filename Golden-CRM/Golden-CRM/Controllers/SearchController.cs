@@ -21,6 +21,11 @@ namespace Golden_CRM.Controllers
             return View();
         }
 
+        /// <summary>
+        /// This method handles the search query for customers
+        /// </summary>
+        /// <param name="query">search query</param>
+        /// <returns>search results</returns>
         public async Task<IActionResult> SearchResults(string query)
         {
             if(query == null)

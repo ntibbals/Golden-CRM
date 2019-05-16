@@ -25,6 +25,11 @@ namespace Golden_CRM.Controllers
         [HttpGet]
         public IActionResult Register() => View();
 
+        /// <summary>
+        /// This method creates a new user in Identity DB
+        /// </summary>
+        /// <param name="rvm">Register View Model</param>
+        /// <returns>User to Home page</returns>
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel rvm)
         {
@@ -72,6 +77,10 @@ namespace Golden_CRM.Controllers
             return View(rvm);
         }
 
+        /// <summary>
+        /// This method logs a user in
+        /// </summary>
+        /// <returns>User to home page</returns>
         [HttpGet]
         public IActionResult Login() => View();
 
