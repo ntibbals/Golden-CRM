@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Golden_CRM.Pages.Leads
 {
-    [Authorize(Policy = "AdminOnly")]
+  
     public class CustomerModel : PageModel
     {
         private readonly ICustomer _customer;
