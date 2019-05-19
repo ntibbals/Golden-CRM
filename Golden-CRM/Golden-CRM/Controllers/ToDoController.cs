@@ -65,6 +65,22 @@ namespace Golden_CRM.Controllers
         }
 
         /// <summary>
+        /// This method locates specific ToDo to edit
+        /// </summary>
+        /// <param name="id">id of todo/task to edit</param>
+        /// <returns></returns>
+        public async Task<IActionResult> Edit(int id)
+        {
+            var note = await _context.FindToDo(id);
+
+            if(note == null)
+            {
+                return NotFound();
+            }
+            return View(note);
+
+        }
+        /// <summary>
         /// This method handles edit functionality for ToDo's/notes
         /// </summary>
         /// <param name="id"></param>

@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
 
 namespace Golden_CRM.Models.Services
 {
@@ -137,10 +139,23 @@ namespace Golden_CRM.Models.Services
                         FirstName = column[0], 
                         LastName = column[1],
                         Email = column[2],
-                        PhoneNumber = column[3],
+                        PhoneNumber = FormatPhoneNumber(column[3]),
                     });
                 }
             }
+        }
+
+        private string FormatPhoneNumber(string phoneNum)
+        {
+            string phoneFormat = "(###) ###-####";
+
+            Regex regexObj = new Regex(@"[^\d]");
+            phoneNum = regexObj.Replace(phoneNum, "");
+            if (phoneNum.Length > 0)
+            {
+                phoneNum = Convert.ToInt64(phoneNum).ToString(phoneFormat);
+            }
+            return phoneNum;
         }
     }
 }
