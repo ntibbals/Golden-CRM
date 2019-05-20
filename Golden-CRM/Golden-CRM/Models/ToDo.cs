@@ -21,6 +21,7 @@ namespace Golden_CRM.Models
         [DataType(DataType.Date)]
         public DateTime DueDate { get; set; }
 
+        public bool Complete { get; set; }
         public DateTime CompletedDate { get; set; }
 
     }

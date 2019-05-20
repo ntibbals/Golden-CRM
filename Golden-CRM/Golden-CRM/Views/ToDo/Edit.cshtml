@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Golden_CRM.Models
+@inject UserManager<ApplicationUser> userManager
+@model Golden_CRM.Models.ToDo
+@using Golden_CRM.Models.Interfaces
+@inject ICustomer  CustomerManager
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+@{
+    var email = @User.Claims.First(c => c.Type == "Email").Value;
+    var users = await CustomerManager.GetUsers();
+
+}
+
+<h1> Tasks</h1>
+
+<div>
+    <div id="form-contain">
+        <form asp-controller="ToDo" asp-action="Edit">
+            <input type="hidden" asp-for="@Model.CustomerID" id="input" />
+            <input type="hidden" asp-for="@Model.UserID" value="@email" id="input" />
+            <div>
+                <label asp-for="@Model.ContactType" class="control-label"></label>
+                <select asp-for="@Model.ContactType" class="form-control" asp-items="@Html.GetEnumSelectList<Golden_CRM.Models.ContactTypes>()"></select>
+                <span asp-validation-for="@Model.ContactType" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="@Model.Comment"></label>
+                <input asp-for="@Model.Comment" id="input" placeholder="Add Comment Here" />
+            </div>
+            <div>
+                <label asp-for="@Model.AssignedOwner"></label>
+                <select asp-for="@Model.AssignedOwner">
+                    <option value="Unassigned">Unassigned</option>
+                    @foreach (var item in users)
+                    {
+                        <option value="@item">@item</option>
+
+                    }
+                </select>
+                <span asp-validation-for="@Model.AssignedOwner" class="text-danger"></span>
+
+            </div>
+            <label asp-for="@Model.DueDate"></label>
+            <input asp-for="@Model.DueDate" id="input" />
+            <span asp-validation-for="@Model.DueDate"></span>
+
+            <label asp-for="@Model.Complete"></label>
+            <input asp-for="@Model.Complete"  type="checkbox" id="input" />
+            <div id="but-contain">
+                <button type="submit" value="Save" id="button">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

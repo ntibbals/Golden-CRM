@@ -9,16 +9,22 @@
 <h1>Golden CRM</h1>
 <h2>All Customers</h2>
 <div class="cust-index-contain">
-    @foreach (var item in Model)
-    {
-        <div class="ind-cust-contain">
-            <p>@item.FirstName</p>
-            <p>@item.LastName</p>
-            <p>@item.Email</p>
-            <p>@item.PhoneNumber</p>
-            <a asp-page="/Customers/Customer" asp-route-id="@item.ID" id="button-new">Details</a>
-        </div>
-    }
+    <table id="ind-cust-contain">
+        <tbody >
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Email</td>
+                    <td>@item.PhoneNumber</td>
+                    <td><a asp-page="/Customers/Customer" asp-route-id="@item.ID" id="button-new">Details</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
 
     <div class="header-outer">
         @{<partial name="_RecentCustomers" />}
@@ -36,7 +42,7 @@
             <input type="file" id="input" name="csv" />
         </div>
         <div id="but-contain">
-            <button type="submit" value="Save" id="button">Save</button>
+            <button type="submit" value="Save" id="button">Upload</button>
         </div>
     </form>
 </div>

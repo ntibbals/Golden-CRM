@@ -23,13 +23,13 @@
             </div>
 
             <div id="button-contain">
-                <button type="submit" value"Save" id="button">Edit</button>
+                <button type="submit" value"Save" id="button">Edit/Save</button>
             </div>
         </form>
         <form asp-controller="Notes" asp-action="Delete">
             <input type="hidden" asp-for="@Model.ID" id="input" />
             <input type="hidden" asp-for="@Model.CustomerID" id="input" />
-            <button id="button" type="submit">Remove from Cart</button>
+            <button id="button" type="submit">Delete</button>
         </form>
     </div>
 </div>
