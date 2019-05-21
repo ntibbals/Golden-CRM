@@ -80,11 +80,14 @@ namespace Golden_CRM.Models.Services
 
             else
             {
+                oldToDo.ContactType = toDo.ContactType;
+                oldToDo.AssignedOwner = toDo.AssignedOwner;
+                oldToDo.DueDate = toDo.DueDate;
                 oldToDo.Comment = toDo.Comment;
                 oldToDo.CompletedDate = DateTime.Now;
                 oldToDo.UserID = toDo.UserID;
 
-                _context.ToDos.Update(toDo);
+                _context.ToDos.Update(oldToDo);
             }
 
             await _context.SaveChangesAsync();

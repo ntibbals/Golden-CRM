@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Golden_CRM.Migrations
 {
     [DbContext(typeof(GoldenDbContext))]
-    [Migration("20190420231229_initial")]
-    partial class initial
+    [Migration("20190519193037_comp")]
+    partial class comp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,13 +27,19 @@ namespace Golden_CRM.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AssignedOwner");
+
                     b.Property<string>("Email");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
 
+                    b.Property<DateTime>("LastVisited");
+
                     b.Property<string>("PhoneNumber");
+
+                    b.Property<int>("Priority");
 
                     b.HasKey("ID");
 
@@ -46,7 +52,9 @@ namespace Golden_CRM.Migrations
                             Email = "jd@doe.com",
                             FirstName = "John",
                             LastName = "Doe",
-                            PhoneNumber = "555-555-5555"
+                            LastVisited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PhoneNumber = "555-555-5555",
+                            Priority = 0
                         });
                 });
 
@@ -59,6 +67,8 @@ namespace Golden_CRM.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("varchar(max)");
 
+                    b.Property<int>("ContactType");
+
                     b.Property<int>("CustomerID");
 
                     b.Property<DateTime>("Date");
@@ -70,22 +80,36 @@ namespace Golden_CRM.Migrations
                     b.HasIndex("CustomerID");
 
                     b.ToTable("Notes");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Comment = "This is comment one for John Doe",
-                            CustomerID = 1,
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Comment = "This is comment two for John Doe",
-                            CustomerID = 1,
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
+            modelBuilder.Entity("Golden_CRM.Models.ToDo", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AssignedOwner");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<bool>("Complete");
+
+                    b.Property<DateTime>("CompletedDate");
+
+                    b.Property<int>("ContactType");
+
+                    b.Property<int>("CustomerID");
+
+                    b.Property<string>("CustomerName");
+
+                    b.Property<DateTime>("DueDate");
+
+                    b.Property<string>("UserID");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ToDos");
                 });
 
             modelBuilder.Entity("Golden_CRM.Models.Note", b =>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Golden_CRM.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Golden_CRM.Controllers
@@ -15,6 +16,8 @@ namespace Golden_CRM.Controllers
         {
             _context = context;
         }
+
+        [Authorize(Policy = "MemberOnly")]
         public async Task<IActionResult> Index()
         {
             var customers = await _context.GetCustomers();

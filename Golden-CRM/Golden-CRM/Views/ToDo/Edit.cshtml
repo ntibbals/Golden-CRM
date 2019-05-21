@@ -6,6 +6,10 @@
 @inject ICustomer  CustomerManager
 
 @{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+@{
     var email = @User.Claims.First(c => c.Type == "Email").Value;
     var users = await CustomerManager.GetUsers();
 
@@ -15,7 +19,7 @@
 
 <div>
     <div id="form-contain">
-        <form asp-controller="ToDo" asp-action="Create">
+        <form asp-controller="ToDo" asp-action="Edit">
             <input type="hidden" asp-for="@Model.CustomerID" id="input" />
             <input type="hidden" asp-for="@Model.UserID" value="@email" id="input" />
             <div>
@@ -43,6 +47,9 @@
             <label asp-for="@Model.DueDate"></label>
             <input asp-for="@Model.DueDate" id="input" />
             <span asp-validation-for="@Model.DueDate"></span>
+
+            <label asp-for="@Model.Complete"></label>
+            <input asp-for="@Model.Complete"  type="checkbox" id="input" />
             <div id="but-contain">
                 <button type="submit" value="Save" id="button">Save</button>
             </div>

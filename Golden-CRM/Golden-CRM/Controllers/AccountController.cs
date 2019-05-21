@@ -54,6 +54,7 @@ namespace Golden_CRM.Controllers
 
                     List<Claim> claims = new List<Claim> { name, emailClaim, userEmailClaim };
 
+                    await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
                     await _userManager.AddClaimsAsync(user, claims);
 
                     if  (user.Email == "ntibbals@outlook.com")

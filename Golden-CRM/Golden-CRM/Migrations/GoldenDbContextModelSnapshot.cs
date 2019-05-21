@@ -91,6 +91,8 @@ namespace Golden_CRM.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("varchar(max)");
 
+                    b.Property<bool>("Complete");
+
                     b.Property<DateTime>("CompletedDate");
 
                     b.Property<int>("ContactType");

@@ -2,20 +2,21 @@
 
 namespace Golden_CRM.Migrations
 {
-    public partial class todo : Migration
+    public partial class comp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "CustomerName",
+            migrationBuilder.AddColumn<bool>(
+                name: "Complete",
                 table: "ToDos",
-                nullable: true);
+                nullable: false,
+                defaultValue: false);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "CustomerName",
+                name: "Complete",
                 table: "ToDos");
         }
     }
