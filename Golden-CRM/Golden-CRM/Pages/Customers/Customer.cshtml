@@ -2,12 +2,14 @@
 @model Golden_CRM.Pages.Leads.CustomerModel
 @using Golden_CRM.Models.Interfaces
 @inject ICustomer  CustomerManager
+
 @{
     Layout = "_Layout";
 }
-@{ 
+@{
     var users = await CustomerManager.GetUsers();
 }
+
 <h1> Individual Customer Page</h1>
 
 <div>
@@ -15,7 +17,7 @@
         <form method="post" enctype="multipart/form-data" id="form">
             <div>
                 <label asp-for="Customer.FirstName"></label>
-                <input asp-for="Customer.FirstName" id="input" placeholder="First Name"/>
+                <input asp-for="Customer.FirstName" id="input" placeholder="First Name" />
             </div>
             <div>
                 <label asp-for="Customer.LastName"></label>
@@ -27,7 +29,7 @@
             </div>
             <div>
                 <label asp-for="Customer.PhoneNumber"></label>
-                <input asp-for="Customer.PhoneNumber" id="input" placeholder="Phone Number"/>
+                <input asp-for="Customer.PhoneNumber" id="input" placeholder="Phone Number" />
             </div>
             <div>
                 <label asp-for="Customer.AssignedOwner"></label>

@@ -19,6 +19,7 @@ namespace Golden_CRM.Models
         public string PhoneNumber { get; set; }
         public string AssignedOwner { get; set; }
         public DateTime LastVisited { get; set; }
+        public string LastVisitedBy { get; set; }
         public Priorities Priority { get; set; }
 
         //Navigation Properties

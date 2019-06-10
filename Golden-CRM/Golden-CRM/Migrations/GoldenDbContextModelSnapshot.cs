@@ -35,6 +35,8 @@ namespace Golden_CRM.Migrations
 
                     b.Property<DateTime>("LastVisited");
 
+                    b.Property<string>("LastVisitedBy");
+
                     b.Property<string>("PhoneNumber");
 
                     b.Property<int>("Priority");
