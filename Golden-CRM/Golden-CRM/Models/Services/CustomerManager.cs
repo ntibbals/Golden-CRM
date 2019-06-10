@@ -74,7 +74,7 @@ namespace Golden_CRM.Models.Services
         /// <returns>list of last 10 customers</returns>
         public async Task<List<Customer>> RecentCustomers(string userID)
         {
-            var myCustomers = _context.Customers.Where(c => c.AssignedOwner == userID);
+            var myCustomers = _context.Customers.Where(c => c.LastVisitedBy == userID);
             var recent = myCustomers.OrderByDescending(o => o.LastVisited).Take(10).ToList();
             return recent;
         }
